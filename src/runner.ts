@@ -16,9 +16,7 @@ export async function run(): Promise<void> {
   try {
     const token = core.getInput('repo-token', {required: true})
     const configPath = core.getInput('configuration-path', {required: true})
-    const commentTableHeader = core.getInput('comment-table-header', {
-      required: true
-    })
+    const commentTableHeader = core.getInput('comment-table-header', {required: true})
     const commentIntro = core.getInput('comment-intro', {required: true})
     const commentBody = core.getInput('comment-body', {required: true})
     const pr = getPullRequestContext()
