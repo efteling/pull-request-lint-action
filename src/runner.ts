@@ -63,7 +63,7 @@ export async function run(): Promise<void> {
 
     for (const comment of comments) {
       // filter the comment based containing the indicator.
-      if (commentBody.includes(FEEDBACK_INDICATOR)) {
+      if (comment.body?.includes(FEEDBACK_INDICATOR)) {
         comment_id = comment.id
         break
       }
