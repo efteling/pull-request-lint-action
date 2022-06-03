@@ -1,8 +1,6 @@
 # Pull Request Linter
 
-[![build-test](https://github.com/patrickkempff/action-prlint-v2/actions/workflows/test.yml/badge.svg)](https://github.com/patrickkempff/action-prlint-v2/actions/workflows/test.yml)
-
-[![CodeQL](https://github.com/patrickkempff/action-prlint-v2/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/patrickkempff/action-prlint-v2/actions/workflows/codeql-analysis.yml)
+[![build-test](https://github.com/efteling/pull-request-lint-action/actions/workflows/test.yml/badge.svg)](https://github.com/efteling/pull-request-lint-action/actions/workflows/test.yml) [![CodeQL](https://github.com/efteling/pull-request-lint-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/efteling/pull-request-lint-action/actions/workflows/codeql-analysis.yml)
 
 Automatically lint pull requests and get feedback on what to change.
 
@@ -56,7 +54,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: patrickkempff/action-prlint-v2@master
+    - uses: efteling/pull-request-lint-action@master
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 ```
