@@ -1,0 +1,33 @@
+name: 'Pull Request Linter'
+description: 'A GitHub action that matches the pull request title, body & branchname against regex patters.'
+author: 'Patrick Kempff <patrickkempff@gmail.com>'
+inputs:
+  repo-token:
+    description: 'Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.'
+    required: false
+    default: ${{ github.token }}    
+  configuration-path:
+    description: 'The path for the pull request lint rules configuration'
+    default: '.github/prlint.yml'
+    required: false
+  comment-table-header:
+    description: 'The title of the report table when found one or more issues.'
+    default: 'Fails' 
+    required: false 
+  comment-intro:
+    description: 'The intro of the report, rendered above the table when found one or more issues.'
+    default: |+
+      :wave: Hi There! 
+    required: false
+  comment-body:
+    description: 'The message of the report, rendered below the table when found one or more issues.'
+    default: |+
+      I found **{{count}}** failures but please don't let this discourage you! Your effort is greatly appreciated and together we make sure that the codebase stays in awesome shape! :ok_hand:
+      :pray: Before this PR can be reviewed, please resolve the above issues first. Thanks! 
+      **Not sure how to resolve a specific issue?** 
+      There are edge cases where I will be wrong. If you think this is the case or you are not sure how to fix the issue, you should let the reviewer know by adding the reason/question to your PR description. If you are looking for me or want to know what rules I live by, you can find me in [prlint.yml](../blob/master/.github/prlint.yml).
+    required: false
+    
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
