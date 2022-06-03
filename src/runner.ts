@@ -57,6 +57,8 @@ export async function run(): Promise<void> {
       issue_number: pr.number
     })
 
+    core.debug(`comments: ${JSON.stringify(comments)}`)
+
     // will hold the comment id if there is a comment with
     // the given indicator
     let comment_id: number | null = null
