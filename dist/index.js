@@ -141,7 +141,7 @@ const yaml = __importStar(__nccwpck_require__(1917));
 const linter_1 = __importDefault(__nccwpck_require__(8237));
 const report_1 = __importDefault(__nccwpck_require__(8269));
 const utils_1 = __nccwpck_require__(918);
-const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->\n`;
+const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->`;
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {

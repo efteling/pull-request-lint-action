@@ -10,7 +10,7 @@ type Config = {
   rules: LintRule[]
 }
 
-const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->\n`
+const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->`
 
 export async function run(): Promise<void> {
   try {
