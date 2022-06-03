@@ -47,20 +47,11 @@ function checkRule(rule, pullrequest) {
     const flags = rule.pattern_flags || 'g';
     switch (rule.target) {
         case 'title':
-            return !pullrequest.title ||
-                !new RegExp(rule.pattern, flags).test(pullrequest.title)
-                ? rule.message
-                : null;
+            return !pullrequest.title || !new RegExp(rule.pattern, flags).test(pullrequest.title) ? rule.message : null;
         case 'body':
-            return !pullrequest.body ||
-                !new RegExp(rule.pattern, flags).test(pullrequest.body)
-                ? rule.message
-                : null;
+            return !pullrequest.body || !new RegExp(rule.pattern, flags).test(pullrequest.body) ? rule.message : null;
         case 'branch':
-            return !pullrequest.branch ||
-                !new RegExp(rule.pattern, flags).test(pullrequest.branch)
-                ? rule.message
-                : null;
+            return !pullrequest.branch || !new RegExp(rule.pattern, flags).test(pullrequest.branch) ? rule.message : null;
     }
 }
 
@@ -150,15 +141,14 @@ const yaml = __importStar(__nccwpck_require__(1917));
 const linter_1 = __importDefault(__nccwpck_require__(8237));
 const report_1 = __importDefault(__nccwpck_require__(8269));
 const utils_1 = __nccwpck_require__(918);
-const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->\n`;
+const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->`;
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = core.getInput('repo-token', { required: true });
             const configPath = core.getInput('configuration-path', { required: true });
-            const commentTableHeader = core.getInput('comment-table-header', {
-                required: true
-            });
+            const commentTableHeader = core.getInput('comment-table-header', { required: true });
             const commentIntro = core.getInput('comment-intro', { required: true });
             const commentBody = core.getInput('comment-body', { required: true });
             const pr = (0, utils_1.getPullRequestContext)();
@@ -191,12 +181,13 @@ function run() {
                 repo,
                 issue_number: pr.number
             });
+            core.debug(`comments: ${JSON.stringify(comments)}`);
             // will hold the comment id if there is a comment with
             // the given indicator
             let comment_id = null;
             for (const comment of comments) {
                 // filter the comment based containing the indicator.
-                if (commentBody.includes(FEEDBACK_INDICATOR)) {
+                if ((_a = comment.body) === null || _a === void 0 ? void 0 : _a.includes(FEEDBACK_INDICATOR)) {
                     comment_id = comment.id;
                     break;
                 }

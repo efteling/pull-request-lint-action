@@ -10,7 +10,7 @@ type Config = {
   rules: LintRule[]
 }
 
-const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->\n`
+const FEEDBACK_INDICATOR = `<!-- ci_comment_type: pull-request-lint-feedback -->`
 
 export async function run(): Promise<void> {
   try {
@@ -56,6 +56,8 @@ export async function run(): Promise<void> {
       repo,
       issue_number: pr.number
     })
+
+    core.debug(`comments: ${JSON.stringify(comments)}`)
 
     // will hold the comment id if there is a comment with
     // the given indicator
