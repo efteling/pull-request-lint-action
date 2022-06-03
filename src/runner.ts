@@ -30,14 +30,10 @@ export async function run(): Promise<void> {
 
     const client: ClientType = github.getOctokit(token)
     const configContent: string = await fetchContent(client, configPath)
-
-    // loads (hopefully) a `{[label:string]: string | StringOrMatchConfig[]}`, but is `any`:
     const config = yaml.load(configContent) as Config
 
     // Start the linting of the pull request.
-    const results = lint(config.rules, pr).map(error =>
-      error.replace(/^\s+|\s+$/g, '')
-    )
+    const results = lint(config.rules, pr).map(error => error.replace(/^\s+|\s+$/g, ''))
 
     // Generate the report based on the comment templates.
     const report = generateReport(results, {
@@ -67,8 +63,6 @@ export async function run(): Promise<void> {
     // the given indicator
     let comment_id: number | null = null
 
-    core.debug(`Already existing comment id: ${comment_id}`)
-
     for (const comment of comments) {
       // filter the comment based containing the indicator.
       if (commentBody.includes(FEEDBACK_INDICATOR)) {
@@ -76,6 +70,8 @@ export async function run(): Promise<void> {
         break
       }
     }
+
+    core.debug(`Already existing comment id: ${comment_id}`)
 
     if (!report) {
       if (comment_id !== null) {
@@ -98,9 +94,7 @@ export async function run(): Promise<void> {
           body: `${FEEDBACK_INDICATOR}\n\n${report}`
         })
 
-        return core.setFailed(
-          `This PR does not met the required rules. See ${result.data.url} for more info. (1)`
-        )
+        return core.setFailed(`This PR does not met the required rules. See ${result.data.url} for more info. (1)`)
       } else {
         const result = await client.rest.issues.updateComment({
           comment_id,
@@ -109,9 +103,7 @@ export async function run(): Promise<void> {
           body: `${FEEDBACK_INDICATOR}\n\n${report}`
         })
 
-        return core.setFailed(
-          `This PR does not met the required rules. See ${result.data.url} for more info. (2)`
-        )
+        return core.setFailed(`This PR does not met the required rules. See ${result.data.url} for more info. (2)`)
       }
     }
   } catch (error: any) {

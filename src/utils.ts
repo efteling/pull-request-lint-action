@@ -26,10 +26,7 @@ export function getPullRequestContext(): PullRequestContext | null {
   }
 }
 
-export async function fetchContent(
-  client: ClientType,
-  repoPath: string
-): Promise<string> {
+export async function fetchContent(client: ClientType, repoPath: string): Promise<string> {
   const response: any = await client.rest.repos.getContent({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,

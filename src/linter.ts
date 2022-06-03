@@ -8,10 +8,7 @@ export interface LintRule {
   message: string
 }
 
-export default function lint(
-  rules: LintRule[],
-  pullrequest: PullRequestContext
-): string[] {
+export default function lint(rules: LintRule[], pullrequest: PullRequestContext): string[] {
   const errors: (string | null)[] = []
 
   core.debug(`Linting data:`)
@@ -26,27 +23,15 @@ export default function lint(
   return errors.filter(error => typeof error === 'string') as string[]
 }
 
-function checkRule(
-  rule: LintRule,
-  pullrequest: PullRequestContext
-): string | null {
+function checkRule(rule: LintRule, pullrequest: PullRequestContext): string | null {
   const flags = rule.pattern_flags || 'g'
 
   switch (rule.target) {
     case 'title':
-      return !pullrequest.title ||
-        !new RegExp(rule.pattern, flags).test(pullrequest.title)
-        ? rule.message
-        : null
+      return !pullrequest.title || !new RegExp(rule.pattern, flags).test(pullrequest.title) ? rule.message : null
     case 'body':
-      return !pullrequest.body ||
-        !new RegExp(rule.pattern, flags).test(pullrequest.body)
-        ? rule.message
-        : null
+      return !pullrequest.body || !new RegExp(rule.pattern, flags).test(pullrequest.body) ? rule.message : null
     case 'branch':
-      return !pullrequest.branch ||
-        !new RegExp(rule.pattern, flags).test(pullrequest.branch)
-        ? rule.message
-        : null
+      return !pullrequest.branch || !new RegExp(rule.pattern, flags).test(pullrequest.branch) ? rule.message : null
   }
 }
