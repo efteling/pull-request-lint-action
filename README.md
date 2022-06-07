@@ -54,7 +54,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: efteling/pull-request-lint-action@master
+    - uses: efteling/pull-request-lint-action@main
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 ```
