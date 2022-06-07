@@ -26,7 +26,7 @@ inputs:
       :pray: Before this PR can be reviewed, please resolve the above issues first. Thanks! 
       
       ### Not sure how to resolve a specific issue?
-      There are edge cases where I will be wrong. If you think this is the case or you are not sure how to fix the issue, you should let the reviewer know by adding the reason/question to your PR description. If you are looking for me or want to know what rules I live by, you can find me in [prlint.yml](../blob/master/.github/prlint.yml).
+      There are edge cases where I will be wrong. If you think this is the case or you are not sure how to fix the issue, you should let the reviewer know by adding the reason/question to your PR description. If you are looking for me or want to know what rules I live by, you can find me in [prlint.yml](../blob/main/.github/prlint.yml).
     required: false
     
 runs:
